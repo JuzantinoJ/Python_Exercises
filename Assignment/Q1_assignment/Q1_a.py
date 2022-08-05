@@ -1,5 +1,9 @@
 # Question 1 (a)
-# Create a sizing chart for users via their chest measurements
+# a) Write a program that helps customers find their T-Shirt size. The program reads in the 
+# chest measurement in centimetres and displays the T-Shirt size.  
+ 
+# Assume user will enter valid input. 
+
 
 # create an input for chest measurement in float numeric type
 chestMeasurement = float(input("Enter chest measurement (cm): "))

@@ -1,7 +1,14 @@
 #Question 1 (b)
-# Create a program to find users size via Height, Chest and Waist measurement.
-# If all sizes fit within range, indicate the best fit for user
-
+# (b) Using Table 1-2, write a program to recommend the T-Shirt size, based on customers’ 
+# height,  chest,  and  waist  measurements.  Your  program  must  display  the  appropriate 
+# “fitting” based on the following fitting rules: 
+# o best fit: if all three measurements indicate same size. 
+# o regular  fit:  if  two  measurements  indicate  same  larger  size  than  the  third.  See 
+# Sample execution 2 below. 
+# o relaxed  fit:  if  one  measurement  indicates  larger  size  than  the  other  two.  See 
+# sample execution 3 below. 
+ 
+# Assume user will enter valid input. 
 #create variable for 3 inputs - Height ,Chest and Weight
 
 height = float(input("Enter height measurement (cm):"))
