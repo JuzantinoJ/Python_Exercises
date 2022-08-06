@@ -114,10 +114,5 @@ def winner():
     else:
         print(f"Computer is the winner!!")
         print("-----" * 10)
-    
-
-
-
-    
 winner()
 
