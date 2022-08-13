@@ -8,6 +8,7 @@
 
 # create getHandOfShapes function with 2 arguments (size and auto) 
 import random 
+
 cardSize = int(input("Please insert size: "))
 generateCard = input(f"Do you want to auto generate cards? (Yes or No): ").upper()
 shapes = ["scissors","paper", "stone"]
@@ -19,12 +20,12 @@ def getHandOfShapes(size,auto):
     global shapeSize
     if size > 3:
         if auto == "YES":
-            while cardSize <= size:
-                random_list= [random.choice(shape).upper() for shape in shapes]
+            while cardSize < size:
+                random_list= random.choice(shapes).upper()
                 cardSize += 1
                 shapeSize += 1
                 userCardChoices.append(random_list)
-            print(random_list)
+            print(userCardChoices)
         elif auto == "NO":
             while cardSize < size:
                 usersChoice = input(f"Shape {shapeSize}: please select a shape: ").upper()
@@ -34,8 +35,6 @@ def getHandOfShapes(size,auto):
             print(userCardChoices) 
     elif size < 3:
         print("Please choose more than 3 cards")
-
-
 
 getHandOfShapes(cardSize,generateCard)
 
