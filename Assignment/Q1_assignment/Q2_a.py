@@ -33,8 +33,6 @@ def getShape():
     else:
         print("Sorry, please select from scissors, paper or stone.")
 
-
-
 #create random shape function
 def getRandomShape():
     select = "scissors,paper,stone".split(",")
