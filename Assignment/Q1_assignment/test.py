@@ -1,33 +1,50 @@
-
-
+# #rewrite Qns3a
 import random 
-cardSize = int(input("Please insert size: "))
-generateCard = input(f"Do you want to auto generate cards? (Yes or No): ").upper()
-shapes = ["scissors","paper", "stone"]
-userCardChoices = []
-shapeSize = 1
+
+def randChoice():
+    shapes = ["scissors","paper", "stone"]
+    random_list= random.choice(shapes).upper()
+    return random_list
+
+
+def number_of_cards():
+    cards = int(input("Please input the number of cards : "))
+    if cards < 3:
+        cards = int(input("Please input more than 3 number of cards : "))
+        return cards
+    else:
+        return cards
+
+def generateCards():
+    generate_card = input("Would you like to auto generate cards? (Yes or No) : ").upper()
+    if generate_card == "YES":
+        return True
+    else:
+        return False
+
+
+size_of_card = number_of_cards()
+generateCard = generateCards()
+
 
 def getHandOfShapes(size,auto):
-    cardSize = 0
-    global shapeSize
-    if size > 3:
-        if auto == "YES":
-            while cardSize < size:
-                random_list= random.choice(shapes).upper()
-                cardSize += 1
-                shapeSize += 1
-                userCardChoices.append(random_list)
-            print(userCardChoices)
-        elif auto == "NO":
-            while cardSize < size:
-                usersChoice = input(f"Shape {shapeSize}: please select a shape: ").upper()
-                cardSize +=1
-                shapeSize += 1
-                userCardChoices.append(usersChoice)
-            print(userCardChoices) 
-    elif size < 3:
-        print("Please choose more than 3 cards")
+    card_size = 0
+    user_size = 1
+    user_card_choices = []
+    if auto == True:
+        while card_size < size:
+            random_list= randChoice()
+            card_size += 1
+            user_size += 1
+            user_card_choices.append(random_list)
+        print(user_card_choices)
+    else:
+        while card_size < size:
+            usersChoice = input(f"Shape {user_size}: please select a shape: ").upper()
+            card_size +=1
+            user_size += 1
+            user_card_choices.append(usersChoice)
+        print(user_card_choices) 
+   
 
-
-
-getHandOfShapes(cardSize,generateCard)
+getHandOfShapes(size_of_card ,generateCard)

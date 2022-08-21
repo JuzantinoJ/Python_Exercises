@@ -37,6 +37,9 @@ def getShape():
 def getRandomShape():
     select = "scissors,paper,stone".split(",")
     randomChoice = random.choice(select).upper()
-    return randomChoice  
+    print( randomChoice)  
 
+getShape()
+
+getRandomShape()
 
