@@ -9,12 +9,13 @@
 # create getHandOfShapes function with 2 arguments (size and auto) 
 import random 
 
+#create random choice
 def randChoice():
     shapes = ["scissors","paper", "stone"]
     random_list= random.choice(shapes).upper()
     return random_list
 
-
+#create users number of cards
 def number_of_cards():
     cards = int(input("Please input the number of cards : "))
     if cards < 3:
@@ -23,16 +24,13 @@ def number_of_cards():
     else:
         return cards
 
+#ask user if he wants to auto generate cards or manually insert cards. Will return True or False
 def generateCards():
     generate_card = input("Would you like to auto generate cards? (Yes or No) : ").upper()
     if generate_card == "YES":
         return True
     else:
         return False
-
-
-size_of_card = number_of_cards()
-generateCard = generateCards()
 
 
 def getHandOfShapes(size,auto):
@@ -54,7 +52,8 @@ def getHandOfShapes(size,auto):
             user_card_choices.append(usersChoice)
         print(user_card_choices) 
    
-
+size_of_card = number_of_cards()
+generateCard = generateCards()
 getHandOfShapes(size_of_card ,generateCard)
 
     

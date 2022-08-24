@@ -35,11 +35,11 @@ def getShape():
     return player
 
 #Compare player and computer shape 
-numOfRounds = 1
+
 def play():
     player = getShape()
     computer = getRandomShape()
-    global numOfRounds
+    numOfRounds = 1
     if player == computer:
         print(f"Round {numOfRounds} : Player choosed : {player}")
         print(f"Round {numOfRounds} : Computer choosed : {computer}")

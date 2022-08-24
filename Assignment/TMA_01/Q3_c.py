@@ -1,30 +1,25 @@
-# (b)
-# A sample run of this function print( getHandOfShapes(4, False) ) is as follows:
-# Output from
-# ['STONE', 'STONE', 'SCISSORS', 'PAPER'] print( getHandOfShapes(4, True) )
-# where the 4 shapes are randomly selected
-# (5 marks)
-# Employ structured programming to develop a new game with rules as follows:
-#  At start of the game, prompt for the size of hand.
-#  Size must be at least 3. If not, ask user to re-enter the size.
-#  After capturing the player’s name, proceed to create the player’s hand of shapes.
-# Make use of the getHandOfShapes() function in Q3(a).
-#  Your program will also setup computer’s hand of shapes, according to the size
-# entered.
-#  Next is to compare the computer and players’ hand of shapes, one-by-one, and
-# award one point to the winner. Do not award point if it is a tie.
-#  After comparing the hand of shapes, display the winner of the game (if any).
-#  If the result is a tie, repeat the game with new hand of shapes, until a winner can
-# be determined.
+# (c)
+# (10 marks)
+# Write a new game, by enhancing Q3(b) with the following new rules:
+#  In a hand of n shapes, there should not be more than n/2 of same shapes. This
+# applies to both player and computer.
+#  After comparing the hand of shapes and the result is a tie, the game will into a
+# playoff.
+#  In a playoff, computer will randomly pick a shape, and ask player to select a
+# shape. Make use of the functions you created in Q2(a).
+#  Your program will compare the player’s shape against the computer’s pick and
+# display the winner. If it is still a tie, this playoff format continues until there is a winner.
 
-import random 
+import random
 
+#function for random choices : can be used for computer and player
 def randChoice():
     shapes = ["scissors","paper", "stone"]
     random_list= random.choice(shapes).upper()
     return random_list
 
 
+#function to prompt user on the size of card
 def number_of_cards():
     cards = int(input("Enter size of hand : "))
     if cards < 3:
@@ -33,12 +28,14 @@ def number_of_cards():
     else:
         return cards
 
+#function to ask if player wants to manually choose card or auto generate card
 def generateCards():
     generate_card = input("Would you like to auto generate cards? (Yes or No) : ").upper()
     if generate_card == "YES":
         return True
     else:
         return False
+
 
 
 def getHandOfShapes(size,auto):
@@ -55,9 +52,14 @@ def getHandOfShapes(size,auto):
     else:
         while card_size < size:
             usersChoice = input(f"Shape {user_size}: please select a shape: ").upper()
+            user_card_choices.append(usersChoice)
+            count = user_card_choices.count(usersChoice)
+            if count > 2:
+                card_size -= 1
+                user_size -= 1
+                print(f"Cannot have more than 2 {usersChoice} ")
             card_size +=1
             user_size += 1
-            user_card_choices.append(usersChoice)
         return user_card_choices
    
 
@@ -67,18 +69,22 @@ def computer_hand(size):
     comp_card_choices = []
     while card_size < size:
         comp_random_list = randChoice()
-        card_size += 1
         comp_card_choices.append(comp_random_list)
+        count = comp_card_choices.count(comp_random_list)
+        if count > 2:
+            card_size -= 1
+        card_size += 1
     return comp_card_choices
 
+
 size_of_card = number_of_cards()
+name = input("Enter player's name : ").capitalize()
 generateCard = generateCards()
 comp_list = computer_hand(size_of_card)
 user_list = getHandOfShapes(size_of_card ,generateCard)
 
 
 def compare_cards(player, comp):
-    name = input("Enter player's name : ").capitalize()
     round = 0
     player_point = 0
     comp_point = 0
@@ -114,12 +120,49 @@ def compare_cards(player, comp):
             print(f"<< {name} {player_point} : Computer {comp_point} >>")
             input("Press <Enter> to proceed.")
     if player_point == comp_point:
-        print("It's a tie!! Rematch")
-        compare_cards(user_list,comp_list)
+            print("It's a tie!! PLAYOFF...")
+            play_off()
     elif player_point > comp_point:
-        print("Player wins!")
+        print(f"{name} is the winner!")
     else:
         print("Computer wins! Try again")
 
 
+def play_off():
+    points = 0
+    player_points = 0
+    comp_points = 0
+    round = 1
+    while points < 1:
+        player_choice = input(f"Playoff {round}: {name}, please select a shape: ").upper()
+        comp_choice = randChoice()
+        if player_choice == comp_choice:
+            round += 1
+            print(f"Playoff {round} Computer's shape is : {comp_choice}")
+        elif player_choice == "STONE" and comp_choice == "SCISSORS":
+            player_points += 1
+            round += 1
+            points += 1
+            print(f"Playoff {round} Computer's shape is : {comp_choice}")
+        elif player_choice == "SCISSORS" and comp_choice == "PAPER":
+            player_points += 1
+            round += 1
+            points += 1
+            print(f"Playoff {round} Computer's shape is : {comp_choice}")
+        elif player_choice == "PAPER" and comp_choice == "STONE":
+            player_points += 1
+            round += 1
+            points += 1
+            print(f"Playoff {round} Computer's shape is : {comp_choice}")
+        else:
+            comp_points += 1
+            round += 1
+            points += 1
+            print(f"Playoff {round} Computer's shape is : {comp_choice}")
+    if player_points > comp_points:
+        print(f"{name} wins")
+    else:
+        print("Computer wins")
+
 compare_cards(user_list,comp_list)
+
