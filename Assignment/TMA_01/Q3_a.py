@@ -15,6 +15,7 @@ def randChoice():
     random_list= random.choice(shapes).upper()
     return random_list
 
+print(randChoice())
 #create users number of cards
 def number_of_cards():
     cards = int(input("Please input the number of cards : "))
