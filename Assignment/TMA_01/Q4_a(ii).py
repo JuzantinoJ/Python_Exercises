@@ -31,7 +31,7 @@ def showSeatingPlan(seatingPlan):
 # showSeatingPlan(readSeatingPlan('Monkey_Goes_East-202209081430.txt'))
 
 def main():
-    result = readSeatingPlan('Bad_Citizen-202210181930.txt')
+    result = readSeatingPlan('Bad_Citizen-202209081930.txt')
     showSeatingPlan(result)
 
 main()

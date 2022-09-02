@@ -53,8 +53,12 @@ def getHandOfShapes(size,auto):
             user_card_choices.append(usersChoice)
         print(user_card_choices) 
    
-size_of_card = number_of_cards()
-generateCard = generateCards()
-getHandOfShapes(size_of_card ,generateCard)
+
+def main():
+    size_of_card = number_of_cards()
+    generateCard = generateCards()
+    getHandOfShapes(size_of_card ,generateCard)
+
+main()
 
     

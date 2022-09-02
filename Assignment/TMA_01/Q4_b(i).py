@@ -33,7 +33,9 @@ def showSeatingPlan(seatingPlan):
         print(f"{k:2} {'   '.join(v)}")
 
     for elem in range(1,len(v) +1 ):
-        print(f"{elem:4}" , end="")
+        # print("{elem:4}" , end="")
+        print("  {:02d}".format(elem), end="")
+
 
 def selection(select):
     while True:

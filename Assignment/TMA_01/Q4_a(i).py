@@ -47,6 +47,7 @@ def readSeatingPlan(filename):
     file.close()
     return seatingPlan
 
+    
 # readSeatingPlan('Monkey_Goes_East-202209081430.txt')
 
 

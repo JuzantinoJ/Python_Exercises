@@ -13,93 +13,72 @@
 #  If  the  result  after  3  rounds  is  a  tie,  repeat  the  game  (3-rounds)  again,  until  a 
 # winner can be determined. 
 
-import random , math
+import random
 
-# players name is global variable
-name = input("Enter players name: ").capitalize()
+# get player name
+def playerName():
+    name = input("Enter player's name: ").capitalize()
+    return name
 
+#get players shape
+def getShape(tries,name):
+    shape = input(f"Round {tries}: {name}, please select a shape: ").upper()
+    if shape == "SCISSORS":
+        return shape
+    elif shape == "PAPER":
+        return shape
+    elif shape == "STONE":
+        return shape
+    else:
+        print("Sorry, please select from Scissors, Paper or Stone.")
 
-#from Question (a)
-def getRandomShape():
+#get random shape for computer
+def getRandomShape(tries):
     select = "scissors,paper,stone".split(",")
     randomChoice = random.choice(select).upper()
-    return randomChoice   
+    print(f"Round {tries}: Computer's shape is {randomChoice}")
+    return randomChoice  
 
-
-def getShape():
-    player = input(f"{name}, please select a shape: ").upper()
-    if player == "SCISSORS" or player == "PAPER" or player == "STONE":
-        return player 
-    else:
-        print("Sorry, please select from scissors, paper or stone.")
-    return player
-
-#Compare player and computer shape 
-
-def play():
-    player = getShape()
-    computer = getRandomShape()
-    numOfRounds = 1
-    if player == computer:
-        print(f"Round {numOfRounds} : Player choosed : {player}")
-        print(f"Round {numOfRounds} : Computer choosed : {computer}")
+#compare cards to determine winner
+def checkCards(player, comp):
+    if player == comp:
         return 0
-    elif player == "STONE" and computer == "PAPER":
-        print(f"Round {numOfRounds} : Player choosed : {player}")
-        print(f"Round {numOfRounds} : Computer choosed : {computer}")
-        return -1
-    elif player == "SCISSORS" and computer == "STONE":
-        print(f"Round {numOfRounds} : Player choosed : {player}")
-        print(f"Round {numOfRounds} : Computer choosed : {computer}")
-        return -1
-    elif player == "PAPER" and computer == "SCISSORS":
-        print(f"Round {numOfRounds} : Player choosed : {player}")
-        print(f"Round {numOfRounds} : Computer choosed : {computer}")
-        numOfRounds += 1
-        return -1
-    else:
-        print(f"Round {numOfRounds} : Player choosed : {player}")
-        print(f"Round {numOfRounds} : Computer choosed : {computer}")
-        numOfRounds += 1
+    elif player == "SCISSORS" and comp == "PAPER":
         return 1
-
-
-
-
-#determine winner
-def winner():  
-    playerPoint = 0
-    computerPoint = 0
-    numOfWins = 0
-    while numOfWins < 3:
-        result = play()
-        if result == 0:
-            numOfWins +=1
-            print("Its a draw!")
-            print(f"{name} : {playerPoint} || Computer : {computerPoint}") 
-            print("-----" * 10)  
-        elif result == 1:
-            numOfWins +=1
-            playerPoint += 1
-            print("You won!")
-            print(f"{name}: {playerPoint} || Computer : {computerPoint}")
-            print("-----" * 10)   
-        else: 
-            result == -1
-            numOfWins +=1
-            computerPoint += 1
-            print("You lost!")
-            print(f"{name} : {playerPoint} || Computer : {computerPoint}")
-            print("-----" * 10)
-    #if its a tie, run the game again    
-    if playerPoint == computerPoint:
-        print(f"Its a tie!! Rematch...")
-        print("-----" * 10)
-        winner()     
-    elif playerPoint > computerPoint:
-        print(f"{name} is the winner!!")
-        print("-----" * 10)
+    elif player == "PAPER" and comp == "STONE":
+        return 1
+    elif player == "STONE" and comp == "SCISSORS":
+        return 1
     else:
-        print(f"Computer is the winner!!")
-        print("-----" * 10)
-winner()
+        return -1
+
+#start game with 3 rounds (range(1,4)). and print player and computer points
+#if its a tie, play again
+def play(name):
+    player_point = 0
+    comp_point = 0 
+    for tries in range(1,4):
+        user = getShape(tries,name)
+        comp = getRandomShape(tries)
+        cards = checkCards(user,comp)
+        if cards == 0:
+            print(f"<< {name} {player_point} : Computer {comp_point} >>")
+        elif cards == 1:
+            player_point += 1
+            print(f"<< {name} {player_point} : Computer {comp_point} >>")
+        else:
+            comp_point += 1
+            print(f"<< {name} {player_point} : Computer {comp_point} >>")
+    if player_point == comp_point:
+        print("It's a tie!! Rematch...")
+        play(name)
+    elif player_point > comp_point:
+        print("Player wins!!")
+    else:
+        print("Computer wins!!")
+
+def main():
+    name = playerName()
+    play(name)
+
+main()

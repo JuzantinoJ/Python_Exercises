@@ -9,11 +9,48 @@
 #     print("\nThe average of the numbers is", sum/count)
 #     infile.close()
 
-someDict = {'A': ['O','X','X','X','#','X','X','X','X','#','X','X','O','O']}
+someDict = {'A': ['O','X','X','X','#','X','X','X','X','#','X','X','O','O'],
+'B': ['O','X','X','X','#','X','X','X','X','#','X','X','O','O']}
 
-for key,value in someDict.items():
-    print(key , "   ".join(value))
 
-someList = ['O','X','X','X','#','X','X','X','X','#','X','X','O','O']
+for value in someDict.values():
+    # print(key , "   ".join(value))
+    print(value[:1] + value[3:])
+    
 
-print(f"{(len(someList))}")
+# someList = ['O','X','X','X','#','X','X','X','X','#','X','X','O','O']
+
+# print(f"{(len(someList))}")
+
+# for k, v in someDict.items():
+#     seats = (v[0] + v [1])
+#     print(k , seats)
+
+# def choosetochange():
+#     choice = input("Choose seat to change: ").upper()
+#     change = {choice[0]: choice[1]}
+#     return change
+# choosetochange()
+
+# for key in someDict.keys():
+#     print(key)
+
+# for value in someDict.values():
+#     print(value)
+
+def change(d):
+    seat = {}
+    choice = input("Choose seat to change: ").upper()
+    # change = {choice[0]: [choice[1]]}
+    key = choice[0]
+    value = int(choice[1])
+    seat[choice[0]] = int(choice[1])
+    print(type(key))
+    print(type(value))
+    print(choice)
+    for k, v in d.items():
+        print(k[0], v[value - 1])
+    # print(d)
+    # print(change)
+
+change(someDict)
