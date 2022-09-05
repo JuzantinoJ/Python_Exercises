@@ -1,17 +1,3 @@
-# (b) Write a program to play the game of Scissors-Paper-Stone, using structured 
-# programming. Your program will allow a player to play three rounds of Scissors-Paper-
-# Stone against the computer. 
-# The scope of the program is as follows: 
-#  At start of the game, allow player to enter his/her name. 
-#  For each round, computer will randomly pick a shape, and ask player to select 
-# a shape. Make use of the functions you created in question 2(a). 
-#  Your  program  will  compare the player’s shape against the computer’s pick, 
-# determine the outcome of this round and award one point to the winner. Do not 
-# award point if it is a tie.  
-#  Display current score before start of next round. 
-#  At the end of three rounds, display the winner of the game (if any). 
-#  If  the  result  after  3  rounds  is  a  tie,  repeat  the  game  (3-rounds)  again,  until  a 
-# winner can be determined. 
 
 import random
 
@@ -71,12 +57,13 @@ def play(name):
             print(f"<< {name} {player_point} : Computer {comp_point} >>")
     if player_point == comp_point:
         print("It's a tie!! Rematch...")
-        play(name)
+        play(name) #will start game again if its a tie
     elif player_point > comp_point:
         print("Player wins!!")
     else:
         print("Computer wins!!")
 
+#start game
 def main():
     name = playerName()
     play(name)

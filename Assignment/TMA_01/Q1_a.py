@@ -1,8 +1,3 @@
-# Question 1 (a)
-# a) Write a program that helps customers find their T-Shirt size. The program reads in the 
-# chest measurement in centimetres and displays the T-Shirt size.  
- 
-# Assume user will enter valid input. 
 
 
 # create an input for chest measurement in float numeric type

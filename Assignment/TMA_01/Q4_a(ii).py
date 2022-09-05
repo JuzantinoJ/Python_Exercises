@@ -1,37 +1,27 @@
-#(ii) 
-#Write a function showSeatingPlan(seatingPlan) that will display the seating plan 
-# as shown in Table 4-1. 
-# The parameter is a dictionary representation of the seating plan.
-
-# from Q4(i)
+# from Q4(ii)
 def readSeatingPlan(filename):
+    row_label = []
+    seat_status = []
     file = open(filename,'r')
-    listofseats =[]
-    for l in file.readlines():
-        l = l.split()
-        for items in l:
-            listofseats.append(items)
-
-    seatingPlan = {}
-    for i in listofseats:
-        result = i.split(',')
-        seatingPlan[result[0]] = list(result[1])
-    file.close()
-    return seatingPlan
+    #seperate data from file in to a list
+    for line in file.readlines():
+        row,seats = line.strip().split(',')
+        row_label.append(row)
+        seat_status.append(list(seats))
+    result = dict(zip(row_label, seat_status))
+    return result
 
 #create showSeatingPlan function 
 def showSeatingPlan(seatingPlan):
     for k,v in seatingPlan.items():
         print(f"{k:2} {'   '.join(v)}")
 
-    #create a list of numbers for elements
+    #create a list of numbers according to the seat rows
     for elem in range(1,len(v) +1 ):
-        print(f"{elem:4}" , end="")
-
-# showSeatingPlan(readSeatingPlan('Monkey_Goes_East-202209081430.txt'))
+        result = str(elem).rjust(2,'0')
+        print(f"  {result:2}" , end="")
 
 def main():
-    result = readSeatingPlan('Bad_Citizen-202209081930.txt')
+    result = readSeatingPlan('Monkey Goes East-202209081430.txt')
     showSeatingPlan(result)
-
 main()

@@ -1,4 +1,7 @@
+
 import random 
+
+
 #randChoice function is to create a random list of shapes for computer and if auto is True
 # if random list has more than 2 of the same shape it will loop and create a new shape
 def randChoice(size):
@@ -91,8 +94,7 @@ def compare_cards(player, comp, name, size_of_card):
     else:
         print("Computer wins! Try again")
 
-#play_off function will commence when its a Tie. Only one winner.
-#if playoff is a tie, will loop again.
+#play_off function will commence when its a Tie. 
 def play_off(name):
     size = 1
     points = 0
@@ -106,6 +108,7 @@ def play_off(name):
         print(f"Playoff {size}: computer shape is : {comp_choice[0]} ")
         print(f'{name} is the winner!!')
         points += 1
+
     elif player_choice == "PAPER" and comp_choice[0] == "STONE":
         print(f"Playoff {size}: computer shape is : {comp_choice[0]} ")
         print(f'{name} is the winner!!')
@@ -125,7 +128,7 @@ def main():
     size_of_card = number_of_cards()
     name = input("Enter player's name : ").capitalize()
     comp_list = randChoice(size_of_card)
-    user_list = getHandOfShapes(size_of_card, False)
+    user_list = getHandOfShapes(size_of_card, True)
     print("Game starts...")
     compare_cards(user_list,comp_list,name, size_of_card)
 
