@@ -2,6 +2,9 @@
 #main menu takes file from FR_Productions.txt
 #element in files are seperated into production list
 #position list consist of keys for each file
+from unittest import result
+
+
 def mainMenu():
     position = []
     production = []
@@ -72,14 +75,29 @@ def showSeatingPlan(seatingPlan):
 #subMenu function shows 3 options to choose
 #selection of Book seats, Cancel Bookings or back to main menu
 def subMenu():
-    return int(input('''
+    submenu = (input('''
     Sub-Menu
     ========
     1. Book Seats
     2. Cancel Bookings
     X. Back to Main Menu
-    Enter option: 
-    '''))
+    Enter option: '''))
+    if submenu == "1":
+        print("book seat")
+        bookSeat()
+    elif submenu == "2":
+        print('cancel booking')
+    else:
+        main()
+
+
+def bookSeat():
+    seats_booking = []
+    seats_to_book = input("Enter seats to book: ").upper()
+    seats_booking.append(seats_to_book.strip().split(','))
+    # for k,v in seats_booking:
+    print(f'Booking of {seats_to_book} done')
+    print(seats_booking)
 
 #main function to start program
 def main():
@@ -88,4 +106,3 @@ def main():
     showSeatingPlan(readseat)
     subMenu()
 main()
-        

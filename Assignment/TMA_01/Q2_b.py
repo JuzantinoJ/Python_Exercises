@@ -67,5 +67,4 @@ def play(name):
 def main():
     name = playerName()
     play(name)
-
 main()

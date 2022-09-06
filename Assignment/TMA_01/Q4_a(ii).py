@@ -1,4 +1,4 @@
-# from Q4(ii)
+# from Q4(i)
 def readSeatingPlan(filename):
     row_label = []
     seat_status = []

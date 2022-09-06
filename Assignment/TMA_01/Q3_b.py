@@ -7,7 +7,7 @@ def randChoice():
     random_list= random.choice(shapes).upper()
     return random_list
 
-#create users number of cards
+#create users number of cards size
 def number_of_cards():
     cards = int(input("Enter size of hand : "))
     while cards < 3:
@@ -101,5 +101,4 @@ def main():
     user_list = getHandOfShapes(size_of_card ,False)
     print("Game starts...")
     compare_cards(user_list,comp_list,name, size_of_card)
-
 main()

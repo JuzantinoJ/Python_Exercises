@@ -1,234 +1,169 @@
-def randshape():
-    #get random choice of shape
-    shapes = ['SCISSORS', 'PAPER', 'STONE']
-    import random
-    randomshape = random.choice(shapes)
-    return randomshape
-
-def size():
-    #get size of hand
-    while True:
-        size = int(input('Enter size of hand: '))
-        if size < 3:
-            print('Please select a hand size more than 3')
-        else:
-            return size
-
-def auto():
-    
-    autos = ['TRUE', 'FALSE']
-    import random
-    auto = random.choice(autos)
-    return auto
-
-def getHandOfShapes(size):
-    
-    size = size()
-    shape = []
-    for i in range(size):
-        shapes = input(f'Shape {i+1}: please select a shape: ').upper()
-        shape.append(shapes)
-    return(shape) #remember to change back to print in answer
-    
-        
-# def Q3b(size, shape):
-    
-#     glhf = getHandOfShapes(size)
-#     #get random com hand of shapes
-#     for x in range(3):
-#         shapes = ['SCISSORS', 'PAPER', 'STONE']
-#         import random
-#         comchoice = random.choice(shapes)
-    
-#     name = input("Enter player's name: ")
-#     playerscore = 0
-#     comscore = 0
-#     while True:
-#         for s in range(3):
-#             if shape == comchoice:
-#                 playerscore += 0
-#                 comscore += 0
-#             elif shape == 'SCISSORS' and comchoice == 'PAPER':
-#                 playerscore += 1
-#             elif shape =='PAPER' and comchoice == 'STONE':
-#                 playerscore += 1
-#             elif shape =='STONE' and comchoice == 'SCISSORS':
-#                 playerscore += 1
-#             elif shape == 'PAPER' and comchoice == 'SCISSORS':
-#                 comscore += 1
-#             elif shape =='STONE' and comchoice == 'PAPER':
-#                 comscore += 1
-#             elif shape =='SCISSORS' and comchoice == 'STONE':
-#                 comscore += 1
-            
-#             print(f'\nGame starts...')
-#             print(f'Round {s+1}: {name} {shape} : Computer {comchoice}')
-#             print(f'<< {name} {playerscore} : Computer {comscore} >>')
-            
-#         if playerscore == comscore:
-#             print("It's a tie!! Rematch...")
-#         elif playerscore > comscore:
-#             print(f'{name} is the winner!!')
-#         else:
-#             print('Computer isthe winner!!')
-
-# # Q3b(size, shape)
-            
-    
-    
-    
-        
-    
-    # f'Shape {i+1}: please select a shape: ').upper()
-    #     shape.append(shapes)
-        
-    #gethand = getHandOfShapes()
-    #comchoice = comchoice()
-    
-    # comchoice = []
-    # for i in range(size):
-    #     shapes = ['SCISSORS','PAPER','STONE']
-    #     import random
-    #     choice = random.choice(shapes)
-    #     comchoice.append(choice)
-    
-    # while True:
-    #     playerscore = 0
-    #     comscore = 0
-    #     print('\nGame starts...')
-    #     for s in range(size):
-    #         if shape[s] == comchoice[s]:
-    #             playerscore += 0
-    #             comscore += 0
-    #         elif shape[s] == 'SCISSORS' and comchoice[s] == 'PAPER':
-    #             playerscore += 1
-    #         elif shape[s] =='PAPER' and comchoice[s] == 'STONE':
-    #             playerscore += 1
-    #         elif shape[s] =='STONE' and comchoice[s] == 'SCISSORS':
-    #             playerscore += 1
-    #         elif shape[s] == 'PAPER' and comchoice[s] == 'SCISSORS':
-    #             comscore += 1
-    #         elif shape[s] =='STONE' and comchoice[s] == 'PAPER':
-    #             comscore += 1
-    #         elif shape[s] =='SCISSORS' and comchoice[s] == 'STONE':
-    #             comscore += 1
-            
-    #         print(f'Round {s+1}: {name} {shape[s]} : Computer {comchoice[s]}')
-    #         print(f'<< {name} {playerscore} : Computer {comscore} >>')
-    #         print('Press <Enter> to proceed\n')
-            
-    #     if playerscore == comscore:
-    #         print("\nIt's a tie!! Rematch...")
-    #     elif playerscore > comscore:
-    #         print(f'\n{name} is the winner!!')
-    #         break
-    #     else:
-    #         print('\nComputer is the winner!!')
-    #         break
-
-def Q3c():
-    while True:
-        size = int(input('Enter size of hand: '))
-        if size < 3:
-            print('Please select a hand size more than 3')
-        else:
-            break
-    
-    name = input("Enter player's name: ")
-    shape = []
-    hsize = int(size/2)
-    for i in range(size):
-        shapes = input(f'Shape {i+1}: please select a shape: ').upper()
-        shape.append(shapes)
-        if shape.count('SCISSORS') > (hsize):
-            print(f'Cannot have more than {hsize} SCISSORS!!')
-            shapes = input(f'Shape {i+1}: please select a shape: ').upper() #help here duplicate only runs twice
-            shape[hsize] = shapes
-            shape[-1] = shapes
-        elif shape.count('PAPER') > (hsize):
-            print(f'Cannot have more than {hsize} PAPER!!')
-            shapes = input(f'Shape {i+1}: please select a shape: ').upper()
-            shape[hsize] = shapes
-            shape[-1] = shapes
-        elif shape.count('STONE') > (hsize):
-            print(f'Cannot have more than {hsize} STONE!!')
-            shapes = input(f'Shape {i+1}: please select a shape: ').upper()
-            shape[hsize] = shapes
-            shape[-1] = shapes
-    
-    #gethand = getHandOfShapes()
-    #comchoice = comchoice()
-    comchoice = []
-    for i in range(size):
-        shapes = ['SCISSORS','PAPER','STONE']
-        import random
-        choice = random.choice(shapes)
-        comchoice.append(choice)
-    
-    while True:
-        playerscore = 0
-        comscore = 0
-        print('\nGame starts...')
-        for s in range(size):
-            if shape[s] == comchoice[s]:
-                playerscore += 0
-                comscore += 0
-            elif shape[s] == 'SCISSORS' and comchoice[s] == 'PAPER':
-                playerscore += 1
-            elif shape[s] =='PAPER' and comchoice[s] == 'STONE':
-                playerscore += 1
-            elif shape[s] =='STONE' and comchoice[s] == 'SCISSORS':
-                playerscore += 1
-            elif shape[s] == 'PAPER' and comchoice[s] == 'SCISSORS':
-                comscore += 1
-            elif shape[s] =='STONE' and comchoice[s] == 'PAPER':
-                comscore += 1
-            elif shape[s] =='SCISSORS' and comchoice[s] == 'STONE':
-                comscore += 1
-            
-            print(f'Round {s+1}: {name} {shape[s]} : Computer {comchoice[s]}')
-            print(f'<< {name} {playerscore} : Computer {comscore} >>')
-            print('Press <Enter> to proceed\n')
-        
-        if playerscore > comscore:
-            print(f'\n{name} is the winner!!')
-            break
-        elif comscore > playerscore:
-            print('\nComputer is the winner!!')
-            break
-        else:
-            print("\nIt's a tie!! Playoff...")
-            x = 100
-            while True:
-                for s in range(x):
-                    shaper = input(f'\nPlayoff {s+1}: {name}, please select a shape: ').upper()
-                    print(f"Playoff {s+1}: Computer's shape is: {comchoice[0]}")
-                    playscore = 0
-                    compscore = 0
-                    if shape == comchoice[0]:
-                        playerscore += 0
-                        comscore += 0
-                    elif shaper == 'SCISSORS' and comchoice[0] == 'PAPER':
-                        playscore += 1
-                    elif shaper =='PAPER' and comchoice[0] == 'STONE':
-                        playscore += 1
-                    elif shaper =='STONE' and comchoice[0] == 'SCISSORS':
-                        playscore += 1
-                    elif shaper == 'PAPER' and comchoice[0] == 'SCISSORS':
-                        compscore += 1
-                    elif shaper =='STONE' and comchoice[0] == 'PAPER':
-                        compscore += 1
-                    elif shaper =='SCISSORS' and comchoice[0] == 'STONE':
-                        compscore += 1
-                    
-                    print(f'<< {name} {playscore} : Computer {compscore} >>')
-                    print('Press <Enter> to proceed\n')
-                
-                    if playscore == 1:
-                        print(f'\n{name} is the winner!!')
-                        return
-                    elif compscore == 1:
-                        print('Computer is the winner!!')
-                        return
-                
-Q3c()
+def readSeatingPlan(filename): 
+    lgd = ['O','X','#'] 
+    dic = {} 
+    f = open(filename, "r") 
+    for x in f: 
+        splt = x.split(',', 1) 
+        seats = splt[-1] 
+        sl = [x for x in [*seats] if x in lgd] 
+        dic[splt[0]] = sl 
+    return dic 
+ 
+readSeatingPlan("Monkey Goes East-202209081430.txt") 
+ 
+def showSeatingPlan(seatingPlan): 
+    lgd = ['O','X','#'] 
+    ssize = -1 
+    for k,v in seatingPlan.items(): 
+        siz = len(v) 
+        if siz > ssize: ssize = siz 
+        seats = str(v) 
+        s = '  '.join(filter(lambda x: x in lgd, seats)) 
+        print(f'{k}  {s}') 
+    print(' ', end=' ') 
+    for i in range(ssize): print(str(i+1).zfill(2), end=' ') 
+     
+ 
+####################################################### 
+def getFilenameInfo(filename): 
+    d = {} 
+    splt = filename.split('.', 1)[0].split('-', 1) 
+    d['filename'] = filename.strip() 
+    d['title'] = splt[0] 
+    date = splt[-1][:8] 
+    time = splt[-1].replace(date,'') 
+    d['date'] = f'{date[:4]}-{date[4:6]}-{date[6:8]}' 
+    d['time'] = f'{time[:2]}:{time[2:]}' 
+    return d 
+getFilenameInfo("FR_Productions.txt") 
+ 
+ 
+def getMenuSelection(title, optionList, menuType): 
+    selectionTxt = 'Enter selection: ' if menuType == 'M' else 'Enter option: ' 
+    xTxt = 'Exit' if menuType == 'M' else 'Back to Main Menu' 
+    print(title) 
+     
+    for i,e in enumerate(optionList): 
+        print(f'{i+1}. {e}') 
+    print(f'X. {xTxt}') 
+     
+    while True: 
+        i_sel = str(input(selectionTxt)) 
+        if i_sel.isdigit(): 
+            i_sel_conv = int(i_sel)-1 
+            if i_sel_conv < len(optionList) and i_sel_conv >= 0: return int(i_sel)-1 
+            else: print(f'Selection is out of range...') 
+        else:  
+            if i_sel.upper() == 'X': return 'EXIT' if menuType == 'M' else 'MAIN'  
+            else:  
+                print('Selection is not valid...')  
+                continue 
+ 
+ 
+ 
+def validateBookSeats(seatsDic, bookSelectionList): 
+    excpt = False 
+    for x in bookSelectionList: 
+        r = x[:1] 
+        c = int(x[1:])-1 
+        seatVal = seatsDic[r][c] 
+        if seatVal == "O": 
+            seatsDic[r][c] = 'X' 
+        elif seatVal == "X": 
+            print(f"Exception!! {x} is BOOKED") 
+            excpt = True 
+        else: 
+            print(f"Exception!! {x} is BLOCKED") 
+            excpt = True 
+    if excpt: return "EXCEPTION" 
+    else: return seatsDic 
+# showSeatingPlan(validateBookSeats(readSeatingPlan("Monkey Goes East-202209081430.txt"), ["B1", "E9"])) 
+ 
+def validateCancelSeats(seatsDic, cancelSelectionList): 
+    excpt = False 
+    for x in cancelSelectionList: 
+        r = x[:1] 
+        c = int(x[1:])-1 
+        seatVal = seatsDic[r][c] 
+        if seatVal == "X": 
+            seatsDic[r][c] = 'O' 
+        elif seatVal == "O": 
+            print(f"Exception!! {x} is not booked") 
+            excpt = True 
+        else: 
+            print(f"Exception!! {x} is BLOCKED") 
+            excpt = True 
+    if excpt: return "EXCEPTION" 
+    else: return seatsDic 
+ 
+ 
+def transformToFileFormat(seatDic): 
+    lgd = ['O','X','#'] 
+    res = [] 
+    for k,v in seatDic.items(): 
+        strg = str(v) 
+        conv = ''.join(filter(lambda e: e in lgd, strg)) 
+        res.append(f'{k}, {conv}\n') 
+    return res 
+ 
+ 
+################################# 
+def rewriteFileData(filename, dataList): 
+    file = open(filename,'w') 
+    file.writelines(dataList) 
+    file.close() 
+     
+isExit = False 
+while not isExit: 
+    filename = "FR_Productions.txt" 
+    f = open(filename, "r") 
+    mainLi = [] 
+    txtLi = [] 
+ 
+    for i,x in enumerate(f): 
+        fileInfo = getFilenameInfo(x) 
+        txt = f'{fileInfo["title"]} @ {fileInfo["date"]} {fileInfo["time"]}' 
+        mainLi.append(fileInfo) 
+        txtLi.append(txt) 
+ 
+    i_sel = getMenuSelection("\nMain Menu - FR Productions\n==========================", txtLi, "M")    
+    if i_sel == 'EXIT':  
+        isExit = not isExit
+        continue 
+ 
+    #display the production title, performance datetime, seating plan and the sub-menu 
+    while True: 
+        selected = mainLi[i_sel] 
+        print(f'\nProduction: {selected["title"]}') 
+        print(f'Performance datetime: {selected["date"]} {selected["time"]}') 
+        print(f'Seating plan:') 
+        showSeatingPlan(readSeatingPlan(selected["filename"])) 
+ 
+     
+     
+        subMenuLi = ["Book Seats", "Cancel Bookings"] 
+        i_subSel = getMenuSelection("\n\nSub-Menu\n========", subMenuLi, "S") 
+        if i_subSel == 'MAIN': break 
+        else: 
+            selSeatDic = readSeatingPlan(mainLi[i_sel]['filename']) 
+            # Book seats (option 1) 
+            if i_subSel == 0: 
+                i_seats = str(input("Enter seats to book: ")) 
+                selSeatsSplt = i_seats.split(',') 
+                res = validateBookSeats(selSeatDic, selSeatsSplt) 
+                if res == "EXCEPTION":  
+                    print("This booking is aborted") 
+                    continue 
+                else: print(f"Booking of {i_seats} done") 
+            # Cancel Bookings (option 2) 
+            else: 
+                i_seats = str(input("Enter seats to cancel: "))   
+                selSeatsSplt = i_seats.split(',') 
+                res = validateCancelSeats(selSeatDic, selSeatsSplt) 
+                if res == "EXCEPTION":  
+                    print("This cancellation is aborted") 
+                    continue 
+                else: print(f"Cancellation of booking for {i_seats} done") 
+             
+            fileData = transformToFileFormat(res) 
+            rewriteFileData(mainLi[i_sel]['filename'], fileData)

@@ -1,14 +1,52 @@
+#Q4b(i)
+#main menu takes file from FR_Productions.txt
+#element in files are seperated into production list
+#position list consist of keys for each file
 def mainMenu():
-    return int(input('''
-    Main Menu - FR Productions
-    ======================
-    1. Bad Citizen @ 2022-09-08 19:30
-    2. Bad Citizen @ 2022-09-09 19:30
-    3. Monkey Goes East @ 2022-09-08 14:30
-    4. Monkey Goes East @ 2022-09-09 14:30
-    X. Exit
-    Enter selection:  '''))
+    position = []
+    production = []
+    files = open('FR_Productions.txt','r')
+    print("Main Menu - FR Productions")
+    print("=" * 26)
+    for pos, value in enumerate(files.readlines()):
+        position.append(pos+1)
+        production.append(value.strip().split('-'))
+        title = value.split('-')
+        date = title[1].split('.')
+        print(f"{pos+1}. {title[0]} @ {date[0][0:4]}-{date[0][4:6]}-{date[0][6:8]} {date[0][8:10]:}:{date[0][10:12]}")
+    print('X. Exit')
+    choice = input('Enter Selection: ')
 
+    #create dictionary for postion and production
+    result = dict(zip(position,production))
+    #using key and value position to print items in dictionary result
+    while True:
+        if choice == "1":
+            print(f"Production : {result[1][0]}")
+            print(f"Performance datetime: {result[1][1][0:4]}-{result[1][1][4:6]}-{result[1][1][6:8]} {result[1][1][8:10]}:{result[1][1][10:12]}")
+            print("Seating Plan:")
+            return f'{result[1][0]}-{result[1][1]}'
+        elif choice == "2":
+            print(f"Production : {result[2][0]}")
+            print(f"Performance datetime: {result[2][1][0:4]}-{result[2][1][4:6]}-{result[2][1][6:8]} {result[2][1][8:10]}:{result[2][1][10:12]}")
+            print("Seating Plan:")
+            return f'{result[2][0]}-{result[2][1]}'
+        elif choice == "3":
+            print(f"Production : {result[3][0]}")
+            print(f"Performance datetime: {result[3][1][0:4]}-{result[3][1][4:6]}-{result[3][1][6:8]} {result[3][1][8:10]}:{result[3][1][10:12]}")
+            print("Seating Plan:")
+            return f'{result[3][0]}-{result[3][1]}'
+        elif choice == "4":
+            print(f"Production : {result[4][0]}")
+            print(f"Performance datetime: {result[4][1][0:4]}-{result[4][1][4:6]}-{result[4][1][6:8]} {result[4][1][8:10]}:{result[4][1][10:12]}")
+            print("Seating Plan:")
+            return f'{result[4][0]}-{result[4][1]}'
+        elif choice == 'xX':
+            break
+
+# mainMenu()
+
+#read seating function from Q4(a(i))
 def readSeatingPlan(filename):
     row_label = []
     seat_status = []
@@ -21,7 +59,7 @@ def readSeatingPlan(filename):
     result = dict(zip(row_label, seat_status))
     return result
 
-#create showSeatingPlan function 
+#showSeatingPlan function from Q4(a(ii))
 def showSeatingPlan(seatingPlan):
     for k,v in seatingPlan.items():
         print(f"{k:2} {'   '.join(v)}")
@@ -31,23 +69,11 @@ def showSeatingPlan(seatingPlan):
         result = str(elem).rjust(2,'0')
         print(f"  {result:2}" , end="")
 
-def selection(select):
-    while True:
-        if select == 1:
-            return 'Bad Citizen-202209081930.txt'
-        elif select == 2:
-            return 'Bad Citizen-202209091930.txt'
-        elif select == 3:
-            return 'Monkey Goes East-202209081430.txt'
-        elif select == 4:
-            return 'Monkey Goes East-202209091430.txt'
-        elif select == 'x':
-            break
-        else:
-            print('Invalid menu choice')
-    
+#subMenu function shows 3 options to choose
+#selection of Book seats, Cancel Bookings or back to main menu
 def subMenu():
     return int(input('''
+
     Sub-Menu
     ========
     1. Book Seats
@@ -56,29 +82,10 @@ def subMenu():
     Enter option: 
     '''))
 
-def showTitle(title):
-        if title == 'Bad Citizen-202209081930.txt':
-            print("Production : Bad Citizen")
-            print("Performance datetime: 2022-09-08 19:30")
-            print("Seating Plan:")
-        elif title == 'Bad Citizen-202209091930.txt':
-            print("Production : Bad Citizen")
-            print("Performance datetime: 2022-09-09 19:30")
-            print("Seating Plan:")
-        elif title == 'Monkey Goes East-202209081430.txt':
-            print("Production : Monkey Goes East")
-            print("Performance datetime: 2022-09-08 14:30")
-            print("Seating Plan:")
-        elif title == 'Monkey Goes East-202209091430.txt':
-            print("Production : Monkey Goes East")
-            print("Performance datetime: 2022-09-09 14:30")
-            print("Seating Plan:")
-
+#main function to start program
 def main():
     select = mainMenu()
-    userChoice = selection(select)
-    readseat = readSeatingPlan(userChoice)
-    showTitle(userChoice)
+    readseat = readSeatingPlan(select)
     showSeatingPlan(readseat)
     subMenu()
 main()

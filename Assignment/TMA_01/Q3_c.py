@@ -1,20 +1,21 @@
 import random 
 #randChoice function is to create a random list of shapes for computer and if auto is True
-# if random list has more than 2 of the same shape it will loop and create a new shape
+# if random list has more than n/2 of the same shape it will loop and create a new shape
 def randChoice(size):
     random_list = []
+    more = int(size/2)
     shapes = ["scissors","paper","stone"]
     for n in range(size):
         n = random.choice(shapes).upper() 
-        if random_list.count(n) < 3:
+        if random_list.count(n) <= more:
             random_list.append(n)
-            while random_list.count(n) >= 3:
+            while random_list.count(n) > more:
                 random_list.pop() 
                 n = random.choice(shapes).upper()
                 random_list.append(n)
     return random_list
 
-# print(randChoice(2))
+# print(randChoice(6))
 
 #number of cards function to ask user how many cards to play
 def number_of_cards():
@@ -27,15 +28,16 @@ def number_of_cards():
 
 #getHandOfShapes function takes in the size from number_of_card input
 # will ask use for choice of card from player
-#if player choose more than 2 of the same hand, user will be prompt to re-enter a diff card
+#if player choose more than n/2 of the same hand, user will be prompt to re-enter a diff card
 def getHandOfShapes(size,auto):
     user_card_choices = []
+    more = int(size/2)
     if auto == False:
         for n in range(size):
             userChoice = input(f"Shape {n + 1} : please select a shape : ").upper()
-            if user_card_choices.count(userChoice) < 3:
+            if user_card_choices.count(userChoice) <= more:
                 user_card_choices.append(userChoice)
-                if user_card_choices.count(userChoice) == 3:
+                if user_card_choices.count(userChoice) > more:
                     print(f'Cannot have more than 2 {userChoice}')
                     user_card_choices.pop()
                     userChoice = input(f"Shape {n + 1} : please select a shape : ").upper()
@@ -97,25 +99,28 @@ def play_off(name):
     size = 1
     points = 0
     player_choice = input(f"Playoff {size}: {name}, please select a shape: ").upper()
-    comp_choice = randChoice(size)
-    while player_choice == comp_choice[0] and points < 1:
-            print(f"Playoff {size}: computer shape is : {comp_choice[0]} ")
+    #from Q2a
+    select = "scissors,paper,stone".split(",")
+    randomChoice = random.choice(select).upper()
+    comp_choice = randomChoice
+    while player_choice == comp_choice and points < 1:
+            print(f"Playoff {size}: Computer's shape is : {comp_choice} ")
             size += 1 
             player_choice = input(f"Playoff {size}: {name}, please select a shape: ").upper()
-    if player_choice == "SCISSORS" and comp_choice[0] == "PAPER":
-        print(f"Playoff {size}: computer shape is : {comp_choice[0]} ")
+    if player_choice == "SCISSORS" and comp_choice == "PAPER":
+        print(f"Playoff {size}: Computer's shape is : {comp_choice} ")
         print(f'{name} is the winner!!')
         points += 1
-    elif player_choice == "PAPER" and comp_choice[0] == "STONE":
-        print(f"Playoff {size}: computer shape is : {comp_choice[0]} ")
+    elif player_choice == "PAPER" and comp_choice == "STONE":
+        print(f"Playoff {size}: Computer's shape is : {comp_choice} ")
         print(f'{name} is the winner!!')
         points += 1
-    elif player_choice == "STONE" and comp_choice[0] == "SCISSORS":
-        print(f"Playoff {size}: computer shape is : {comp_choice[0]} ")
+    elif player_choice == "STONE" and comp_choice == "SCISSORS":
+        print(f"Playoff {size}: Computer's shape is : {comp_choice} ")
         print(f'{name} is the winner!!')
         points += 1
     else:
-        print(f"Playoff {size}: computer shape is : {comp_choice[0]} ")
+        print(f"Playoff {size}: Computer's shape is : {comp_choice} ")
         print('Computer is the winner!!')
         points += 1
 
@@ -128,5 +133,4 @@ def main():
     user_list = getHandOfShapes(size_of_card, False)
     print("Game starts...")
     compare_cards(user_list,comp_list,name, size_of_card)
-
 main()

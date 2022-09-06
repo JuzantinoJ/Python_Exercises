@@ -248,16 +248,47 @@
 # del numList[2]
 # print(numList)]
 
-def find(s):
-    user = input('choice :').upper()
-    comp = "PAPER"
-    points = 0
-    while user == comp and points < 1:
-            user = input('choice :').upper()
-            print(user)
-            print(comp)
-            print('its a tie')
-    if user == "SCISSORS" and comp == "PAPER":
-        print('player wins') 
+# def find(s):
+#     user = input('choice :').upper()
+#     comp = "PAPER"
+#     points = 0
+#     while user == comp and points < 1:
+#             user = input('choice :').upper()
+#             print(user)
+#             print(comp)
+#             print('its a tie')
+#     if user == "SCISSORS" and comp == "PAPER":
+#         print('player wins') 
 
-find(1)
+# find(1)
+
+
+
+
+def bookSeat():
+    seat_booking = []
+
+    seats_to_book = input("Enter seats to book: ").upper()
+    seats = seats_to_book.strip().split(',')
+    for i in seats:
+        s = i.split()
+        for items in s:
+           for t in items:
+              seat_booking.append(t)
+    print(seat_booking)
+
+
+    
+
+
+bookSeat()
+# row_label = []
+#     seat_status = []
+#     file = open(filename,'r')
+#     #seperate data from file in to a list
+#     for line in file.readlines():
+#         row,seats = line.strip().split(',')
+#         row_label.append(row)
+#         seat_status.append(list(seats))
+#     result = dict(zip(row_label, seat_status))
+#     return result
